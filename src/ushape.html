@@ -1,0 +1,104 @@
+{% extends "shape.html" %} {% block shape %}
+<!-- Portfolio Item Row -->
+<div class="row">
+
+	<div class="col-lg-6">
+		<img class="img-responsive"
+			src="images/UShape750x500.jpg"
+			alt="">
+
+	</div>
+	<div class="col-lg-6">
+		<h3>Please enter the measurements of your countertop in inches</h3>
+		<p>Measure each side of the countertop area and enter the number in inches. If there is more than one surface of the same or different shape, you can add it to the estimate later.</p>
+
+
+		<!-- Projects Row -->
+		<!-- /.row -->
+
+		<form action="/ushape" method="post">
+		<input type="hidden" name="eid" value="{{ request.get('eid') }}"/>
+			<div class="col-lg-2">
+				<div class="control-group form-group">
+					<div class="controls">
+						<label>A:</label> <input value="{{ request.get('side_A') }}" name="side_A"
+							class="form-control" id="side_A" required
+							data-validation-required-message="Please enter A in inches">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="control-group form-group">
+					<div class="controls">
+						<label>B:</label> <input value="{{ request.get('side_B') }}" name="side_B"
+							class="form-control" id="side_B" required
+							data-validation-required-message="Please enter B in inches">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="control-group form-group">
+					<div class="controls">
+						<label>C:</label> <input value="{{ request.get('side_C') }}" name="side_C"
+							class="form-control" id="side_C" required
+							data-validation-required-message="Please enter C in inches">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="control-group form-group">
+					<div class="controls">
+						<label>D:</label> <input value="{{ request.get('side_D') }}" name="side_D"
+							class="form-control" id="side_D" required
+							data-validation-required-message="Please enter D in inches">
+					</div>
+				</div>
+			</div>
+					<div class="col-lg-2">
+				<div class="control-group form-group">
+					<div class="controls">
+						<label>E:</label> <input value="{{ request.get('side_E') }}" name="side_E"
+							class="form-control" id="side_E" required
+							data-validation-required-message="Please enter E in inches">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="control-group form-group">
+					<div class="controls">
+						<label>F:</label> <input value="{{ request.get('side_F') }}" name="side_F"
+							class="form-control" id="side_F" required
+							data-validation-required-message="Please enter F in inches">
+					</div>
+				</div>
+			</div>
+
+			<input type="hidden" value="{{ eid }}" name="eid">
+			<div class="row">
+				<div class="col-lg-8">
+					&nbsp;
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8">
+					&nbsp;
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8">
+					&nbsp;
+				</div>
+			</div>
+			<div class="row" align="right">
+				<div class="col-lg-12 control-group form-group">
+					<button type="submit" class="btn btn-primary">Next</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+
+	<!-- /.col-lg-6 -->
+</div>
+{% endblock %}

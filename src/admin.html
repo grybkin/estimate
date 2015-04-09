@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+<!-- [START head_html] -->
+<head>
+<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+</head>
+<!-- [END head_html] -->
+<body>
+	<h1>Welcome, {{ user.nickname() }}</h1>
+	{% for estimate in estimates %}
+	{{ estimate.ip }} 
+	${{ estimate.total_price }}
+	{{ estimate.total_sqft }} sqft
+	{{ estimate.date_created.strftime('%Y-%m-%d %H:%M') }}
+	{{ estimate.need_attention }}
+	<blockquote>
+	{{ estimate.client.firstname }}
+	{{ estimate.client.lastname }}
+	{{ estimate.client.phone }}
+	{{ estimate.client.email }}
+	{{ estimate.client.zipcode }}
+	</blockquote>
+	{% endfor %}
+	<a href="{{ url|safe }}">{{ url_linktext }}</a>
+</body>
+</html>
+{% endautoescape %}
