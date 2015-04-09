@@ -1,0 +1,26 @@
+application: countertop-estimate
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /css
+  static_dir: css
+- url: /font-awesome
+  static_dir: font-awesome
+- url: /fonts
+  static_dir: fonts
+- url: /js
+  static_dir: js
+- url: /images
+  static_dir: images
+
+- url: /.*
+  script: estimate.application
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
