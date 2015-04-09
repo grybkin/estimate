@@ -1,6 +1,0 @@
-indexes:
-- kind: Estimate
-  ancestor: yes
-  properties:
-  - name: date
-    direction: desc
