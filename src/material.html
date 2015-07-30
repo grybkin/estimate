@@ -16,9 +16,12 @@
 		</div>
 	</div>
 
-	{% for material in materials %} {% if loop.index - 1 % 4 == 0 %}
+	{% for material in materials %}
+	
+	{% if loop.index - 1 % 4 == 0 %}
 	<div class="row">
-		{% endif %}
+	{% endif %}
+		
 		<div class="col-md-3">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -28,18 +31,18 @@
 					<a
 						href="estimate?eid={{ request.get('eid') }}&mid={{ material.key.urlsafe() }}">
 						<img class="img-responsive img-hover"
-						src="http://upload.wikimedia.org/wikipedia/commons/b/bc/Fj%C3%A6regranitt3.JPG"
+						src="images/{{ material.image_filename }}"
 						alt="">
 					</a>
 				</div>
-				<div class="panel-footer">Cost per slab ${{ material.cost_per_slab }}</h3>
+				<div class="panel-footer">Cost per slab ${{ material.cost_per_slab }}
 				</div>
 			</div>
 		</div>
-		{% if loop.index > 1 and loop.index % 4 == 0 %}
+	{% if loop.index > 1 and loop.index - 1 % 4 == 0 %}
 	</div>
-	{% endif %} {% endfor %}
-	</div>
+	{% endif %} 
+	{% endfor %}
 
 </div>
 <!-- /.container -->

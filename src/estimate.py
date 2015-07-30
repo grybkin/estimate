@@ -50,12 +50,61 @@ class CountertopMaterial(ndb.Model):
     slab_size_sqft = ndb.FloatProperty(indexed=False)
     date_created = ndb.DateTimeProperty(auto_now_add=True)
     labor_cost_per_sqft = ndb.FloatProperty(indexed=False)
+    image_filename = ndb.StringProperty(indexed=False)
+"""
+# Group 1
+cm1 = CountertopMaterial()
+cm1.populate(type="granite", cost_per_slab=800, color="Cecilia Light", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group1_cecilia_light.JPG")
+cm1.put()
 
+cm2 = CountertopMaterial()
+cm2.populate(type="granite", cost_per_slab=800, color="Fiorito", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group1_fiorito.JPG")
+cm2.put()
+
+cm3 = CountertopMaterial()
+cm3.populate(type="granite", cost_per_slab=800, color="Ouro Brazil", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group1_ouro_brazil.JPG")
+cm3.put()
+
+cm4 = CountertopMaterial()
+cm4.populate(type="granite", cost_per_slab=800, color="Tan Brown", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group1_tan_brown.JPG")
+cm4.put()
+
+# Group 2
+cm5 = CountertopMaterial()
+cm5.populate(type="granite", cost_per_slab=1100, color="Giblee", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group2_giblee.JPG")
+cm5.put()
+
+cm6 = CountertopMaterial()
+cm6.populate(type="granite", cost_per_slab=1100, color="Juparana Wave", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group2_juparana_wave.JPG")
+cm6.put()
+
+cm7 = CountertopMaterial()
+cm7.populate(type="granite", cost_per_slab=1100, color="Kashmire Cream", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group2_kashmire_cream.JPG")
+cm7.put()
+
+cm8 = CountertopMaterial()
+cm8.populate(type="granite", cost_per_slab=1100, color="Sapphire", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group2_sapphire.JPG")
+cm8.put()
+
+
+# Group 3
+cm9 = CountertopMaterial()
+cm9.populate(type="granite", cost_per_slab=1900, color="Copenhagen", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group3_copenhagen.JPG")
+cm9.put()
+
+cm10 = CountertopMaterial()
+cm10.populate(type="granite", cost_per_slab=1900, color="Golden Crystal", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group3_golden_crystal.JPG")
+cm10.put()
+
+cm11 = CountertopMaterial()
+cm11.populate(type="granite", cost_per_slab=1900, color="Thyphoon Bordeaux", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group3_thyphoon_bordeaux.JPG")
+cm11.put()
+
+cm12 = CountertopMaterial()
+cm12.populate(type="granite", cost_per_slab=1900, color="White Ice", slab_size_sqft=45, labor_cost_per_sqft=50, image_filename="group3_white_ice.JPG")
+cm12.put()
 """
-cm = CountertopMaterial()
-cm.populate(type="granite", cost_per_slab=800, color="black", slab_size_sqft=45, labor_cost_per_sqft=50)
-cm.put()
-"""
+
  
 class Client(ndb.Model):
     email = ndb.StringProperty(indexed=False)
@@ -233,8 +282,8 @@ class ShapeHandler(webapp2.RequestHandler):
         shape = self.get_shape()
         
         def _do_redirect():
-            self.redirect( '%s?eid=%s&side_A=%s&side_B=%s&side_C=%s&side_D=%s' % 
-                           (self.request.path, eid, side_A, side_B, side_C, side_D, side_E, side_F))
+            self.redirect( "{0}?eid={1}&side_A={2}&side_B={3}&side_C={4}&side_D={5}".
+                           format(self.request.path, eid, side_A, side_B, side_C, side_D, side_E, side_F))
         
         if not unicode.isdigit(side_A) or not unicode.isdigit(side_B):
             _do_redirect()
@@ -329,7 +378,8 @@ class EstimateHandler(webapp2.RequestHandler):
 class MaterialHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('material.html')
-        template_values = { 'materials': CountertopMaterial.query() }
+        l = CountertopMaterial.query()
+        template_values = { 'materials': l }
 
         self.response.write(template.render(**extra_context(self, template_values)))
         return
@@ -415,7 +465,8 @@ class ContactHandler(webapp2.RequestHandler):
         message = mail.EmailMessage(sender="grybkin@gmail.com",
                             subject="New Client")
 
-        message.to = "writeme234@gmail.com"
+        message.to = "sergey@domus-surfaces.com"
+        message.cc = "sergek@russianamericanmedia.com"
         message.html = html
         message.send()
             
@@ -428,10 +479,8 @@ class ThankyouHandler(webapp2.RequestHandler):
 
 
 application = webapp2.WSGIApplication([
-    ('/', TempPage)
-    ], debug=debug)
-
-"""
+#    ('/', TempPage),
+    ('/', MainPage),
     ('/lshape', ShapeHandler),
     ('/ushape', ShapeHandler),
     ('/rshape', ShapeHandler),
@@ -440,9 +489,9 @@ application = webapp2.WSGIApplication([
     ('/admin', AdminHandler),
     ('/material', MaterialHandler),
     ('/estimate', EstimateHandler),
-    ('/thankyou', ThankyouHandler)
-#    ('/rest/.*', rest.Dispatcher)
-"""
+    ('/thankyou', ThankyouHandler),
+#    ('/rest/.*', rest.Dispatcher),
+], debug=debug)
 
 
 # configure the rest dispatcher to know what prefix to expect on request urls
