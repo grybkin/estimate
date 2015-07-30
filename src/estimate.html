@@ -1,38 +1,75 @@
 {% extends "base_layout.html" %} {% block content %}
 <!-- Page Content -->
 <div class="container">
-
 	<!-- Page Heading/Breadcrumbs -->
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">
-				Estimate <small>Step 4 of 4</small>
+				Select Your Countertop Layout <small>Step 1 of 4</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="/">Home</a></li>
-				<li><a href="/">Select Style</a></li>
-				<li><a href="/shape?eid={{ request.get('eid') }}">Define Layout</a></li>
-				<li><a href="/material?eid={{ request.get('eid') }}">Pick Color</a></li>
-				<li class="active">Estimate</li>
+				<li class="active">Select Style</li>
 			</ol>
 		</div>
 	</div>
 	<!-- /.row -->
+	<!-- Projects Row -->
 	<div class="row">
-		<div class="col-md-6">
-		{% include "detailed_estimate.html" %}
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">L Shape</h3>
+				</div>
+				<div class="panel-body">
+					<a href="lshape?eid={{ request.get('eid') }}"> <img
+						class="img-responsive img-hover" src="images/LShape750xXXX.jpg"
+						alt="">
+					</a>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6">
-			<h3>Contact us if you have specific questions or to schedule an
-				appointment</h3>
-			{% include "contact_form.html" %}
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Rectangular Shape</h3>
+				</div>
+				<div class="panel-body">
+					<a href="rshape?eid={{ request.get('eid') }}"> <img
+						class="img-responsive img-hover" src="images/RShape750xXXX.jpg"
+						alt="">
+					</a>
+				</div>
+			</div>
 		</div>
-
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">U Shape</h3>
+				</div>
+				<div class="panel-body">
+					<a href="ushape?eid={{ request.get('eid') }}"> <img
+						class="img-responsive img-hover" src="images/UShape750xXXX.jpg"
+						alt="">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Other</h3>
+				</div>
+				<div class="panel-body">
+					<a href="/contact?eid={{ request.get('eid') }}"> <img
+						class="img-responsive img-hover" src="images/OShape750xXXX.jpg"
+						alt="">
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- /.row -->
-
-	<hr>
 </div>
-
 <!-- /.container -->
+
 {% endblock %}

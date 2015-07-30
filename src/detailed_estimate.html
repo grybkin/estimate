@@ -43,7 +43,7 @@
 			</table>
 		</div>
 	</div>
-	{% if request.path == '/estimate' %}
+	{% if request.path == '/total' %}
 	<div class="panel-footer">
 		<form action="/">
 			<input type="hidden" name="eid" value="{{ estimate.key.urlsafe() }}" />

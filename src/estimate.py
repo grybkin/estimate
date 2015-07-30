@@ -324,9 +324,9 @@ class ShapeHandler(webapp2.RequestHandler):
         self.redirect('/material?eid=%s' % estimate.key.urlsafe())
 
 
-class EstimateHandler(webapp2.RequestHandler):
+class TotalHandler(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('estimate.html')
+        template = JINJA_ENVIRONMENT.get_template('total.html')
         eid = ndb.Key(urlsafe=self.request.get('eid'))
         mid = ndb.Key(urlsafe=self.request.get('mid'))
         estimate = eid.get()
@@ -385,7 +385,15 @@ class MaterialHandler(webapp2.RequestHandler):
         return
  
 
+class EstimateHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('estimate.html')
+        self.response.write(template.render(**extra_context(self)))
 
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('about.html')
+        self.response.write(template.render(**extra_context(self)))
 
 class AdminHandler(webapp2.RequestHandler):
     def get(self):
@@ -481,6 +489,8 @@ class ThankyouHandler(webapp2.RequestHandler):
 application = webapp2.WSGIApplication([
 #    ('/', TempPage),
     ('/', MainPage),
+    ('/estimate', EstimateHandler),
+    ('/about', AboutHandler),
     ('/lshape', ShapeHandler),
     ('/ushape', ShapeHandler),
     ('/rshape', ShapeHandler),
@@ -488,7 +498,7 @@ application = webapp2.WSGIApplication([
     ('/contact', ContactHandler),
     ('/admin', AdminHandler),
     ('/material', MaterialHandler),
-    ('/estimate', EstimateHandler),
+    ('/total', TotalHandler),
     ('/thankyou', ThankyouHandler),
 #    ('/rest/.*', rest.Dispatcher),
 ], debug=debug)

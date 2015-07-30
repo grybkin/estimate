@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iOS 8.1//EN
+N:Syracuse;Russ & Amber;;;
+FN:Russ & Amber Syracuse
+ORG:Rent;
+item1.EMAIL;type=INTERNET;type=pref:russ_27@ymail.com
+TEL;type=CELL;type=VOICE;type=pref:(916) 802-0643
+item2.URL;type=pref:linkedin://#profile/45925171
+item2.X-ABLabel:_$!<HomePage>!$_
+END:VCARD
